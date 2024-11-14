@@ -9,8 +9,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // Cargar imagenes a la aplicación
   List<PlatformFile>? _selectedFiles;
-
   Future<void> _pickFiles() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.image,
@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         _selectedFiles = result.files;
       });
-      print(_selectedFiles?.first.bytes);
+      print(result);
     }
   }
 
@@ -38,8 +38,41 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Modelos predictivos'),
+        // elevation: 2.0,
+        // backgroundColor: Colors.white,
+        bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(1.0),
+            child: Container(
+              height: 1.0,
+              color: Colors.grey,
+            )),
+        title: const Text(
+          'Modelos predictivos',
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+        leading: Builder(builder: (context) {
+          return IconButton(
+            color: Colors.black,
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+            icon: const Icon(
+              Icons.menu_rounded,
+            ),
+          );
+        }),
       ),
+      drawer: Drawer(
+          child: ListView(
+        children: const [
+          DrawerHeader(child: Text('Titulo')),
+          ListTile(
+            title: Text('Opción 1'),
+          )
+        ],
+      )),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
