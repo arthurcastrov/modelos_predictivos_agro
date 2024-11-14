@@ -8,12 +8,13 @@ version: 1.0.0+1
 
 environment:
   sdk: ^3.5.0
-
 dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  file_picker: ^8.1.4
+
 
 dev_dependencies:
   flutter_test:
