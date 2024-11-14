@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:modelos_predictivos_agro/services/authentication.dart';
 
 class SigninScreen extends StatefulWidget {
   static const String name = 'signin_screen';
@@ -56,7 +57,9 @@ class _SigninScreenState extends State<SigninScreen> {
                     Size(250.0, 35.0),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  SignInWithProvider().sigInWithMicrosoft(context);
+                },
                 label: const Text('Iniciar sesión'),
                 icon: const FaIcon(
                   FontAwesomeIcons.microsoft,
