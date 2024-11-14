@@ -2,6 +2,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
+  static const String name = 'home_screen';
   const HomeScreen({super.key});
 
   @override
@@ -50,6 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
           'Modelos predictivos',
           style: TextStyle(
             color: Colors.black,
+            fontSize: 16.0,
           ),
         ),
         leading: Builder(builder: (context) {
@@ -60,19 +62,34 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             icon: const Icon(
               Icons.menu_rounded,
+              size: 15.0,
             ),
           );
         }),
       ),
       drawer: Drawer(
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.zero)),
           child: ListView(
-        children: const [
-          DrawerHeader(child: Text('Titulo')),
-          ListTile(
-            title: Text('Opción 1'),
-          )
-        ],
-      )),
+            children: const [
+              UserAccountsDrawerHeader(
+                  currentAccountPicture:
+                      CircleAvatar(backgroundColor: Colors.amber),
+                  accountName: Text("Usuario"),
+                  accountEmail: Text("correo.corre@empresa.com")),
+              DrawerHeader(
+                child: Text(
+                  'Titulo',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                  ),
+                ),
+              ),
+              ListTile(
+                title: Text('Opción 1'),
+              )
+            ],
+          )),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
