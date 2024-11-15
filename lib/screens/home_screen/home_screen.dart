@@ -101,7 +101,85 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            SizedBox(
+              width: MediaQuery.sizeOf(context).width * 0.65,
+              height: 30.0,
+            ),
+            const Text(
+              'Hola',
+              style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
+            ),
+            const Text(
+              'A continuación encontrarás las opciones disponbiles de acuerdo a tu suscripción. Puedes acceder a estas mismas opciones desde el menú lateral izquierdo',
+              style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.normal),
+            ),
+            const SizedBox(
+              height: 50.0,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                width: MediaQuery.sizeOf(context).width * 0.65,
+                height: MediaQuery.sizeOf(context).height * 0.30,
+                child: Center(
+                  child: ListView(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      Card(
+                          elevation: 2.0,
+                          child: Container(
+                            padding: const EdgeInsets.all(15.0),
+                            width: 200.0,
+                            decoration: const BoxDecoration(
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0))),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.all(10.0),
+                                  width: 60.0,
+                                  height: 60.0,
+                                  decoration: const BoxDecoration(
+                                      color: Color(0xFFF1F2FF),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20.0))),
+                                  child: Image.asset(
+                                    'images/AI_logo.png',
+                                    scale: 10.0,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 15.0,
+                                ),
+                                const Text(
+                                  'Predicción de enfermedades',
+                                  style: TextStyle(
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ],
+                            ),
+                          )),
+                      Card(
+                          elevation: 2.0,
+                          child: Container(
+                            width: 200.0,
+                            decoration: const BoxDecoration(
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0))),
+                          )),
+                    ],
+                  ),
+                ),
+              ),
+            ),
             ElevatedButton(
               onPressed: _pickFiles,
               child: const Text('Seleccionar Imágenes'),
