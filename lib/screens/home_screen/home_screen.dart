@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:modelos_predictivos_agro/services/authentication.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String name = 'home_screen';
@@ -39,8 +40,15 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // elevation: 2.0,
-        // backgroundColor: Colors.white,
+        actions: [
+          IconButton(
+            onPressed: () {
+              SignInWithProvider().signOut(context);
+            },
+            icon: const Icon(Icons.logout_rounded),
+            iconSize: 20.0,
+          )
+        ],
         bottom: PreferredSize(
             preferredSize: const Size.fromHeight(1.0),
             child: Container(
