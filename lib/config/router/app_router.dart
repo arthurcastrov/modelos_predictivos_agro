@@ -17,7 +17,7 @@ final appRouter = GoRouter(
     // Si el usuario ya está autenticado se redirige al home
     if (isAuthenticated) {
       // Redirigir al home
-      return '/home_screen';
+      return '/landing_screen';
     }
 
     // Si ninguna condición se cumple, permite la navegación normal
@@ -30,9 +30,9 @@ final appRouter = GoRouter(
       builder: (context, state) => const SigninScreen(),
     ),
     GoRoute(
-      path: '/home_screen',
-      name: HomeScreen.name,
-      builder: (context, state) => const HomeScreen(),
+      path: '/landing_screen',
+      name: LandingScreen.name,
+      builder: (context, state) => const LandingScreen(),
     ),
   ],
 );

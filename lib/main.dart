@@ -28,7 +28,20 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.white,
         ),
         useMaterial3: true,
-        primarySwatch: Colors.blue,
+        primaryColor: const Color(0xFF4547EF),
+        filledButtonTheme: const FilledButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: WidgetStatePropertyAll(
+              Color(0xFF4547EF),
+            ),
+          ),
+        ),
+        navigationDrawerTheme: const NavigationDrawerThemeData(
+          backgroundColor: Color(0xFF4547EF),
+        ),
+        listTileTheme: const ListTileThemeData(
+          titleTextStyle: TextStyle(fontSize: 10.0),
+        ),
       ),
     );
   }

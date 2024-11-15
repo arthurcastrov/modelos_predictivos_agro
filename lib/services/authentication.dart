@@ -14,7 +14,7 @@ class SignInWithProvider {
       );
       if (firebaseAuth.currentUser != null) {
         // ignore: use_build_context_synchronously
-        context.go('/home_screen');
+        context.go('/landing_screen');
       }
     } catch (e) {
       print(e);

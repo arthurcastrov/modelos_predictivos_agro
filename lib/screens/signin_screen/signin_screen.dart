@@ -5,7 +5,6 @@ import 'package:modelos_predictivos_agro/services/authentication.dart';
 class SigninScreen extends StatefulWidget {
   static const String name = 'signin_screen';
   const SigninScreen({super.key});
-
   @override
   State<SigninScreen> createState() => _SigninScreenState();
 }
@@ -32,7 +31,14 @@ class _SigninScreenState extends State<SigninScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(leading: const Icon(Icons.abc_outlined)),
+      appBar: AppBar(
+        title: Image.asset(
+          'images/ADL_Logo.png',
+          height: 25.0,
+        ),
+        centerTitle: false,
+        backgroundColor: const Color(0xfff4f4f4),
+      ),
       body: Center(
         child: Container(
           decoration: const BoxDecoration(
@@ -53,9 +59,6 @@ class _SigninScreenState extends State<SigninScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(
-                height: 15.0,
-              ),
               const Text(
                 'Hola, por favor inicia sesión con tu cuenta corporativa',
                 style: TextStyle(
@@ -64,10 +67,13 @@ class _SigninScreenState extends State<SigninScreen> {
                 ),
               ),
               const SizedBox(
-                height: 25.0,
+                height: 30.0,
               ),
               FilledButton.icon(
                 style: const ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(
+                    Color(0xFF4547EF),
+                  ),
                   minimumSize: WidgetStatePropertyAll(
                     Size(250.0, 35.0),
                   ),
