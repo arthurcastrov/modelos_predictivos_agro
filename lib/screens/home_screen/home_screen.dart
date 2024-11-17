@@ -117,7 +117,10 @@ class _EmbededHomeScreenState extends State<EmbededHomeScreen> {
           ),
           Text(
             textCard,
-            style: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold),
+            style: const TextStyle(
+              fontSize: 12.0,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const SizedBox(
             height: 15.0,

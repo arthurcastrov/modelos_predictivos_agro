@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
         primaryColor: const Color(0xFF4547EF),
         filledButtonTheme: const FilledButtonThemeData(
           style: ButtonStyle(
+            textStyle: WidgetStatePropertyAll(TextStyle(fontSize: 12.0)),
             backgroundColor: WidgetStatePropertyAll(
               Color(0xFF4547EF),
             ),
