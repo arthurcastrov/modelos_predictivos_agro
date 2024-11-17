@@ -25,6 +25,7 @@ class _EmbededPrediccionEnfermedadesState
     if (result != null) {
       setState(() {
         _selectedFiles = result.files;
+        _showProgress = false;
       });
       print(result);
     }
