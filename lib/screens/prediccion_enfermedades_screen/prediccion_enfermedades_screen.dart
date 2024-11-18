@@ -13,6 +13,7 @@ class EmbededPrediccionEnfermedades extends StatefulWidget {
 class _EmbededPrediccionEnfermedadesState
     extends State<EmbededPrediccionEnfermedades> {
   bool _showProgress = false;
+  bool _analysisCompleted = false;
 
   // Cargar imagenes a la aplicación
   List<PlatformFile>? _selectedFiles;
@@ -144,6 +145,7 @@ class _EmbededPrediccionEnfermedadesState
               onPressed: () {
                 setState(() {
                   _showProgress = true;
+                  _analysisCompleted = false; // Reinicia el estado al iniciar.
                 });
               },
               label: const Text('Predecir'),
@@ -155,42 +157,91 @@ class _EmbededPrediccionEnfermedadesState
             const SizedBox(
               height: 30.0,
             ),
+            // _showProgress
+            //     ? Column(
+            //         children: [
+            //           StreamBuilder(
+            //               stream: Stream.periodic(
+            //                   const Duration(milliseconds: 300), (value) {
+            //                 return (value * 7) / 100;
+            //               }).takeWhile((value) => value <= 100),
+            //               builder: (context, snapshot) {
+            //                 final progressValue = snapshot.data ?? 0;
+            //                 return LinearProgressIndicator(
+            //                   value: progressValue,
+            //                   borderRadius:
+            //                       const BorderRadius.all(Radius.circular(10.0)),
+            //                 );
+            //               }),
+            //           const SizedBox(
+            //             height: 5.0,
+            //           ),
+            //           const Text(
+            //             'Analizando, por favor espera...',
+            //             style: TextStyle(
+            //               color: Colors.black,
+            //               fontSize: 11.0,
+            //             ),
+            //           ),
+            //           SizedBox(
+            //             child: Image.asset(
+            //               'assets/images/prediccion.png',
+            //               // height: 300.0,
+            //               // width: 100.0,
+            //               scale: 2.5,
+            //             ),
+            //           )
+            //         ],
+            //       )
+            //     : const Text('')
             _showProgress
                 ? Column(
                     children: [
                       StreamBuilder(
-                          stream: Stream.periodic(
-                              const Duration(milliseconds: 300), (value) {
-                            return (value * 7) / 100;
-                          }).takeWhile((value) => value <= 100),
-                          builder: (context, snapshot) {
-                            final progressValue = snapshot.data ?? 0;
-                            return LinearProgressIndicator(
-                              value: progressValue,
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10.0)),
-                            );
-                          }),
-                      const SizedBox(
-                        height: 5.0,
+                        stream: Stream.periodic(
+                          const Duration(milliseconds: 300),
+                          (value) => (value * 7) / 100,
+                        ).takeWhile((value) => value <= 1),
+                        builder: (context, snapshot) {
+                          final progressValue = snapshot.data ?? 0.0;
+                          print(progressValue);
+
+                          // Finaliza el análisis y muestra la imagen.
+                          if (progressValue == 0.98 && !_analysisCompleted) {
+                            Future.delayed(const Duration(milliseconds: 300),
+                                () {
+                              setState(() {
+                                _showProgress = false;
+                                _analysisCompleted = true;
+                              });
+                            });
+                          }
+
+                          return LinearProgressIndicator(
+                            value: progressValue,
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10.0)),
+                          );
+                        },
                       ),
-                      const Text(
-                        'Estamos analizando las imagenes, por favor espera...',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 11.0,
-                        ),
-                      ),
-                      SizedBox(
-                        child: Image.asset(
-                          'assets/images/flutter_logo.png',
-                          height: 100.0,
-                          width: 100.0,
-                        ),
-                      )
+                      const SizedBox(height: 5.0),
+                      !_analysisCompleted
+                          ? const Text(
+                              'Analizando, por favor espera...',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 11.0,
+                              ),
+                            )
+                          : const SizedBox.shrink(),
                     ],
                   )
-                : const Text('')
+                : _analysisCompleted
+                    ? Image.asset(
+                        'assets/images/prediccion.png',
+                        scale: 2.5,
+                      )
+                    : const SizedBox.shrink(),
           ],
         ),
       ),

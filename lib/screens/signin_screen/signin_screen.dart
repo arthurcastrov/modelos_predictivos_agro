@@ -31,14 +31,14 @@ class _SigninScreenState extends State<SigninScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Image.asset(
-          'images/ADL_Logo.png',
-          height: 25.0,
-        ),
-        centerTitle: false,
-        backgroundColor: const Color(0xfff4f4f4),
-      ),
+      // appBar: AppBar(
+      //   title: Image.asset(
+      //     'images/ADL_Logo.png',
+      //     height: 25.0,
+      //   ),
+      //   centerTitle: false,
+      //   backgroundColor: const Color(0xfff4f4f4),
+      // ),
       body: Center(
         child: Container(
           decoration: const BoxDecoration(
@@ -47,48 +47,57 @@ class _SigninScreenState extends State<SigninScreen> {
             ),
             color: Colors.white,
           ),
-          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+          padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
           width: MediaQuery.sizeOf(context).width * 0.30,
-          height: MediaQuery.sizeOf(context).width * 0.10,
-          child: Column(
-            children: [
-              const Text(
-                'Iniciar sesión',
-                style: TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
+          height: MediaQuery.sizeOf(context).height * 0.30,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Image.asset(
+                  'assets/images/ADL_Logo.png',
+                  height: 30.0,
                 ),
-              ),
-              const Text(
-                'Hola, por favor inicia sesión con tu cuenta corporativa',
-                style: TextStyle(
-                  fontSize: 12.0,
-                  fontWeight: FontWeight.normal,
+                const SizedBox(
+                  height: 20.0,
                 ),
-              ),
-              const SizedBox(
-                height: 30.0,
-              ),
-              FilledButton.icon(
-                style: const ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(
-                    Color(0xFF4547EF),
-                  ),
-                  minimumSize: WidgetStatePropertyAll(
-                    Size(250.0, 35.0),
+                const Text(
+                  'Iniciar sesión',
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                onPressed: () {
-                  // sigInWithMicrosoft();
-                  SignInWithProvider().sigInWithMicrosoft(context);
-                },
-                label: const Text('Iniciar sesión'),
-                icon: const FaIcon(
-                  FontAwesomeIcons.microsoft,
-                  size: 15.0,
+                const Text(
+                  'Hola, por favor inicia sesión con tu cuenta corporativa',
+                  style: TextStyle(
+                    fontSize: 12.0,
+                    fontWeight: FontWeight.normal,
+                  ),
                 ),
-              ),
-            ],
+                SizedBox(
+                  height: MediaQuery.sizeOf(context).height * 0.05,
+                ),
+                FilledButton.icon(
+                  style: const ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(
+                      Color(0xFF4547EF),
+                    ),
+                    minimumSize: WidgetStatePropertyAll(
+                      Size(250.0, 35.0),
+                    ),
+                  ),
+                  onPressed: () {
+                    // sigInWithMicrosoft();
+                    SignInWithProvider().sigInWithMicrosoft(context);
+                  },
+                  label: const Text('Iniciar sesión'),
+                  icon: const FaIcon(
+                    FontAwesomeIcons.microsoft,
+                    size: 15.0,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

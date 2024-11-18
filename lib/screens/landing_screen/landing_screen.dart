@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:modelos_predictivos_agro/screens/home_screen/home_screen.dart';
 import 'package:modelos_predictivos_agro/screens/prediccion_enfermedades_screen/prediccion_enfermedades_screen.dart';
+import 'package:modelos_predictivos_agro/screens/prediccion_precio_arroz_screen/prediccion_precio_arroz_screen.dart';
 import 'package:modelos_predictivos_agro/services/authentication.dart';
 
 class LandingScreen extends StatefulWidget {
@@ -34,7 +35,7 @@ class _LandingScreenState extends State<LandingScreen> {
     _pages = [
       EmbededHomeScreen(onPageChange: _changePage), // Página inicial
       const EmbededPrediccionEnfermedades(), // Página 1
-      const Center(child: Text('Visualización Precio del Arroz')), // Página 2
+      const EmbededPrediccionPrecioArroz(), // Página 2
     ];
   }
 
@@ -135,7 +136,10 @@ class _LandingScreenState extends State<LandingScreen> {
                   FontAwesomeIcons.chartLine,
                   size: 15.0,
                 ),
-                onTap: () {},
+                onTap: () {
+                  _changePage(2);
+                  Navigator.of(context).pop(); // Cierra el Drawer
+                },
               )
             ],
           )),
