@@ -100,6 +100,13 @@ class _EmbededPrediccionEnfermedadesState
                           ),
                           child: const Text('Cargar Imágenes'),
                         ),
+                        const Text(
+                          'Archivos soportados: .jpg, .png',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 11.0,
+                          ),
+                        )
                       ],
                     ),
                   ),
@@ -149,19 +156,40 @@ class _EmbededPrediccionEnfermedadesState
               height: 30.0,
             ),
             _showProgress
-                ? StreamBuilder(
-                    stream: Stream.periodic(const Duration(milliseconds: 300),
-                        (value) {
-                      return (value * 7) / 100;
-                    }).takeWhile((value) => value <= 100),
-                    builder: (context, snapshot) {
-                      final progressValue = snapshot.data ?? 0;
-                      return LinearProgressIndicator(
-                        value: progressValue,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10.0)),
-                      );
-                    })
+                ? Column(
+                    children: [
+                      StreamBuilder(
+                          stream: Stream.periodic(
+                              const Duration(milliseconds: 300), (value) {
+                            return (value * 7) / 100;
+                          }).takeWhile((value) => value <= 100),
+                          builder: (context, snapshot) {
+                            final progressValue = snapshot.data ?? 0;
+                            return LinearProgressIndicator(
+                              value: progressValue,
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(10.0)),
+                            );
+                          }),
+                      const SizedBox(
+                        height: 5.0,
+                      ),
+                      const Text(
+                        'Estamos analizando las imagenes, por favor espera...',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 11.0,
+                        ),
+                      ),
+                      SizedBox(
+                        child: Image.asset(
+                          'assets/images/flutter_logo.png',
+                          height: 100.0,
+                          width: 100.0,
+                        ),
+                      )
+                    ],
+                  )
                 : const Text('')
           ],
         ),
