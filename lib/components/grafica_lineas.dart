@@ -33,7 +33,7 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
     'Oct-24': 50.5,
     'Nov-24': 51.0,
     'Dic-24': 51.5,
-    'Ene-25': 52.0,
+    'Ene-25': 48.0,
     'Feb-25': 52.5,
     'Mar-25': 50.5,
     'Abr-25': 51.0,
@@ -51,6 +51,11 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
         priceData.entries.where((entry) => !entry.key.endsWith('-25')).toList();
     final forecastData =
         priceData.entries.where((entry) => entry.key.endsWith('-25')).toList();
+    final rellenoData = priceData.entries
+        .where((entry) =>
+            entry.key.startsWith('Dic-24') || entry.key.startsWith('Ene-25'))
+        .toList();
+    print('Data: $rellenoData');
     return Column(
       children: <Widget>[
         const SizedBox(
@@ -128,14 +133,15 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
                       getDotPainter: (spot, percent, barData, index) {
                         return FlDotCirclePainter(
                           radius: 3.0, // Ajusta el radio para cambiar el tamaño
-                          color:
-                              Theme.of(context).primaryColor, // Color del punto
+                          // color: Colors.grey, // Color del punto
+                          color: const Color(0xFFFFBF00),
                           strokeWidth: 0, // Borde opcional
                           strokeColor: Colors.transparent,
                         );
                       },
                     ),
-                    color: Theme.of(context).primaryColor,
+                    // color: Colors.grey,
+                    color: const Color(0xFFFFBF00),
                     spots: forecastData
                         .map((entry) => FlSpot(
                               priceData.keys
@@ -147,7 +153,7 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
                         .toList(),
                     isCurved: false,
                     barWidth: 2,
-                    dashArray: [15, 10],
+                    dashArray: [6, 3],
                     // colors: [Colors.blue],
                     belowBarData: BarAreaData(
                       show: true,
@@ -155,7 +161,8 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [
-                          Theme.of(context).primaryColor.withOpacity(0.7),
+                          // Colors.grey.withOpacity(0.7),
+                          const Color(0xFFFFBF00).withOpacity(0.7),
                           Colors.white.withOpacity(0.2)
                         ],
                       ),
