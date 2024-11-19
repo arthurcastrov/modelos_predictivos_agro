@@ -1,3 +1,4 @@
+import 'package:dotted_line/dotted_line.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -55,8 +56,9 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
         .where((entry) =>
             entry.key.startsWith('Dic-24') || entry.key.startsWith('Ene-25'))
         .toList();
-    print('Data: $rellenoData');
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         const SizedBox(
           height: 10.0,
@@ -72,6 +74,46 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
         //     ),
         //   ),
         // ),
+        SizedBox(
+          width: 200.0,
+          height: 20.0,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            // crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text(
+                'Historico ',
+                style: TextStyle(
+                  fontSize: 10.0,
+                  color: Colors.grey,
+                ),
+              ),
+              DottedLine(
+                direction: Axis.horizontal,
+                lineLength: 20.0,
+                dashColor: Theme.of(context).primaryColor,
+                dashGapLength: 0,
+              ),
+              const SizedBox(
+                width: 10.0,
+              ),
+              const Text(
+                'Pronostico ',
+                style: TextStyle(
+                  fontSize: 10.0,
+                  color: Colors.grey,
+                ),
+              ),
+              const DottedLine(
+                direction: Axis.horizontal,
+                lineLength: 20.0,
+                dashColor: Color(0xFFFFBF00),
+                lineThickness: 2.0,
+                dashGapLength: 3.0,
+              )
+            ],
+          ),
+        ),
         const SizedBox(
           height: 10.0,
         ),

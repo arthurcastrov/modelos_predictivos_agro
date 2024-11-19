@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:modelos_predictivos_agro/components/grafica_lineas.dart';
+import 'package:modelos_predictivos_agro/components/line_chart_graphic.dart';
 
 class EmbededPrediccionPrecioArroz extends StatefulWidget {
   const EmbededPrediccionPrecioArroz({super.key});
@@ -177,7 +177,7 @@ class _EmbededPrediccionPrecioArrozState
                 SizedBox(
                     height: 400.0,
                     width: MediaQuery.sizeOf(context).width * 0.45,
-                    child: LineChartGraphic()),
+                    child: const LineChartGraphic()),
               ],
             ),
           ],
