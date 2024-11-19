@@ -47,7 +47,7 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
     'Oct-24': 50.8,
     'Nov-24': 50.7,
     'Dic-24': 52.2,
-    'Ene-25': 48.0,
+    'Ene-25': 49.8,
     'Feb-25': 52.5,
     'Mar-25': 50.5,
     'Abr-25': 51.0,
@@ -153,7 +153,7 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
                               entry.value,
                             ))
                         .toList(),
-                    isCurved: false,
+                    isCurved: true,
                     barWidth: 2,
                     dashArray: [6, 3],
                     // colors: [Colors.blue],
