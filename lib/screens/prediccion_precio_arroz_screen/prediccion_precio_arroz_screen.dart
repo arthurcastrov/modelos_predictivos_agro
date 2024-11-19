@@ -13,23 +13,6 @@ class EmbededPrediccionPrecioArroz extends StatefulWidget {
 class _EmbededPrediccionPrecioArrozState
     extends State<EmbededPrediccionPrecioArroz> {
   int _selectedValue = 1;
-  final Map<String, double> priceData = {
-    'Ene': 45.0, // Históricos
-    'Feb': 46.2,
-    'Mar': 47.5,
-    'Abr': 48.0,
-    'May': 47.8,
-    'Jun': 48.3,
-    'Jul': 49.0,
-    'Ago': 49.5, // Proyección
-    'Sep': 50.0,
-    'Oct': 50.5,
-    'Nov': 51.0,
-    'Dic': 51.5,
-    'Ene+1': 52.0,
-    'Feb+1': 52.5,
-  };
-
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -39,13 +22,6 @@ class _EmbededPrediccionPrecioArrozState
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // SizedBox(
-            //   width: MediaQuery.sizeOf(context).width * 0.65,
-            //   height: MediaQuery.sizeOf(context).height * 0.10,
-            // ),
-            // SizedBox(
-            //   height: MediaQuery.sizeOf(context).height * 0.10,
-            // ),
             const Text(
               'Predicción precio del arroz',
               style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
@@ -54,13 +30,6 @@ class _EmbededPrediccionPrecioArrozState
               'Selecciona un tipo de arroz para ver el comportamiento historico y un precio pronosticado',
               style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.normal),
             ),
-            // SizedBox(
-            //   width: MediaQuery.sizeOf(context).width * 0.65,
-            //   child: const Text(
-            //     'Selecciona un tipo de arroz para ver el comportamiento historico del precio y ver el precio pronosticado',
-            //     style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.normal),
-            //   ),
-            // ),
             const SizedBox(
               height: 50.0,
             ),
@@ -70,9 +39,9 @@ class _EmbededPrediccionPrecioArrozState
               children: [
                 SizedBox(
                   width: MediaQuery.sizeOf(context).width * 0.18,
-                  height: 350.0,
+                  height: 250.0,
                   child: ListView(
-                    padding: const EdgeInsets.only(bottom: 40.0),
+                    padding: const EdgeInsets.only(bottom: 0.0),
                     // physics: NeverScrollableScrollPhysics(),
                     children: <Widget>[
                       RadioListTile(

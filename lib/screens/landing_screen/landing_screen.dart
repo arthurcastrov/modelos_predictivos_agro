@@ -120,7 +120,7 @@ class _LandingScreenState extends State<LandingScreen> {
                 },
               ),
               ListTile(
-                title: const Text('PREDICCIÓN DE ENFERMEDADES'),
+                title: const Text('PREDICCIÓN DE ENFERMEDADES EN PALMAS'),
                 leading: const Icon(
                   FontAwesomeIcons.spider,
                   size: 15.0,
@@ -131,7 +131,7 @@ class _LandingScreenState extends State<LandingScreen> {
                 },
               ),
               ListTile(
-                title: const Text('VISUALIZACIÓN PRECIO DEL ARROZ'),
+                title: const Text('PREDICCIÓN DEL PRECIO DEL ARROZ'),
                 leading: const Icon(
                   FontAwesomeIcons.chartLine,
                   size: 15.0,

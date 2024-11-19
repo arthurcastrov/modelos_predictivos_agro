@@ -1,3 +1,4 @@
+import 'package:dotted_line/dotted_line.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -12,6 +13,7 @@ class EmbededPrediccionEnfermedades extends StatefulWidget {
 
 class _EmbededPrediccionEnfermedadesState
     extends State<EmbededPrediccionEnfermedades> {
+  int _selectedValue = 1;
   bool _showProgress = false;
   bool _analysisCompleted = false;
 
@@ -66,7 +68,79 @@ class _EmbededPrediccionEnfermedadesState
             SizedBox(
               width: MediaQuery.sizeOf(context).width * 0.65,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  SizedBox(
+                    width: MediaQuery.sizeOf(context).width * 0.18,
+                    height: 150.0,
+                    child: ListView(
+                      padding: const EdgeInsets.only(bottom: 0.0),
+                      // physics: NeverScrollableScrollPhysics(),
+                      children: <Widget>[
+                        RadioListTile(
+                            title: const Text('Enfermedad del plumero'),
+                            visualDensity: VisualDensity.compact,
+                            dense: true,
+                            subtitle: const Wrap(
+                              crossAxisAlignment: WrapCrossAlignment.center,
+                              children: [
+                                Text('Incluido en tu suscripción '),
+                                Icon(
+                                  FontAwesomeIcons.check,
+                                  size: 10.0,
+                                )
+                              ],
+                            ),
+                            value: 1,
+                            groupValue: _selectedValue,
+                            onChanged: (value) {
+                              setState(() {
+                                _selectedValue = value!;
+                              });
+                            }),
+                        RadioListTile(
+                          visualDensity: VisualDensity.compact,
+                          dense: true,
+                          title: const Text('Pudrición del cogollo'),
+                          subtitle: const Wrap(
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            children: [
+                              Text('Requiere suscripción premium '),
+                              Icon(
+                                FontAwesomeIcons.crown,
+                                size: 10.0,
+                              )
+                            ],
+                          ),
+                          value: 2,
+                          groupValue: _selectedValue,
+                          onChanged: null,
+                        ),
+                        RadioListTile(
+                          visualDensity: VisualDensity.compact,
+                          dense: true,
+                          title: const Text('Marchitez sorpresiva'),
+                          subtitle: const Wrap(
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            children: [
+                              Text('Requiere suscripción premium '),
+                              Icon(
+                                FontAwesomeIcons.crown,
+                                size: 10.0,
+                              )
+                            ],
+                          ),
+                          value: 3,
+                          groupValue: _selectedValue,
+                          onChanged: null,
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20.0,
+                  ),
                   Container(
                     padding: const EdgeInsets.all(15.0),
                     decoration: const ShapeDecoration(
@@ -116,7 +190,7 @@ class _EmbededPrediccionEnfermedadesState
                       ? Text(
                           'Seleccionaste ${_selectedFiles!.length.toString()} imagenes',
                           style: const TextStyle(
-                              fontSize: 30.0, fontWeight: FontWeight.bold),
+                              fontSize: 25.0, fontWeight: FontWeight.bold),
                         )
 
                       // ? Wrap(
@@ -155,7 +229,7 @@ class _EmbededPrediccionEnfermedadesState
               ),
             ),
             const SizedBox(
-              height: 30.0,
+              height: 20.0,
             ),
             // _showProgress
             //     ? Column(
@@ -204,7 +278,6 @@ class _EmbededPrediccionEnfermedadesState
                         ).takeWhile((value) => value <= 1),
                         builder: (context, snapshot) {
                           final progressValue = snapshot.data ?? 0.0;
-                          print(progressValue);
 
                           // Finaliza el análisis y muestra la imagen.
                           if (progressValue == 0.98 && !_analysisCompleted) {
@@ -237,10 +310,74 @@ class _EmbededPrediccionEnfermedadesState
                     ],
                   )
                 : _analysisCompleted
-                    ? Image.asset(
-                        'assets/images/prediccion.png',
-                        scale: 2.5,
+                    ? Container(
+                        height: 230.0,
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(10.0),
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(20.0),
+                          ),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Resultados',
+                              style: TextStyle(
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14.0,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10.0,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const SizedBox(
+                                  width: 330.0,
+                                  height: 160.0,
+                                  child: Text(
+                                    'En el análisis realizado, el modelo predijo la enfermedad del plumero con un 95% de confianza. El error promedio de clasificación (log-loss) fue de 0.15, lo que indica un alto grado de fiabilidad en las predicciones del modelo. Además, el coeficiente F1 alcanzó un valor de 0.92, reflejando un equilibrio adecuado entre precisión y sensibilidad. Estos resultados proporcionan un soporte valioso para la identificación temprana de enfermedades, facilitando la implementación de medidas correctivas oportunas para proteger cultivos y mejorar su rendimiento.',
+                                    style: TextStyle(
+                                      fontSize: 11.0,
+                                      color: Color(0xFF808080),
+                                    ),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 50.0,
+                                ),
+                                SizedBox(
+                                  height: 120.0,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: Image.asset(
+                                      'assets/images/prediccion.png',
+                                      scale: 2.5,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
                       )
+                    //   child: const Text(
+                    //     'En el análisis realizado, el modelo predijo la enfermedad Palomera con un 95% de confianza. El error promedio de clasificación (log-loss) fue de 0.15, lo que indica un alto grado de fiabilidad en las predicciones del modelo. Además, el coeficiente F1 alcanzó un valor de 0.92, reflejando un equilibrio adecuado entre precisión y sensibilidad. Estos resultados proporcionan un soporte valioso para la identificación temprana de enfermedades, facilitando la implementación de medidas correctivas oportunas para proteger cultivos y mejorar su rendimiento.',
+                    //     style: TextStyle(
+                    //       fontSize: 11.0,
+                    //       color: Color(0xFFB98B00),
+                    //     ),
+                    //   ),
+                    // ),
+
                     : const SizedBox.shrink(),
           ],
         ),

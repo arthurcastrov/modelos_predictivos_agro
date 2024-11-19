@@ -46,14 +46,14 @@ class _EmbededHomeScreenState extends State<EmbededHomeScreen> {
                     Card(
                         elevation: 2.0,
                         child: _cardContainer(
-                            'PREDICCIÓN DE ENFERMEDADES',
+                            'PREDICCIÓN DE ENFERMEDADES EN PALMAS',
                             'Módelo de inteligencia artifical para predecir enferemedades de palma',
                             FontAwesomeIcons.spider,
                             1)),
                     Card(
                         elevation: 2.0,
                         child: _cardContainer(
-                            'VISUALIZACIÓN PRECIO DEL ARROZ',
+                            'PREDICCIÓN DEL PRECIO DEL ARROZ',
                             'Módelo de inteligencia artifical que predice el precio de diferentes tipos de arroz',
                             FontAwesomeIcons.chartLine,
                             2)),

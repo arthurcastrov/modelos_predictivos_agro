@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: appRouter,
-      title: 'Modelos Predictivos',
+      title: 'CDA Agro ADL',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         drawerTheme: (const DrawerThemeData(

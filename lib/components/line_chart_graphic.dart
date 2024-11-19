@@ -29,7 +29,7 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
     'May-24': 47.8,
     'Jun-24': 48.3,
     'Jul-24': 49.0,
-    'Ago-24': 49.5, // Proyección
+    'Ago-24': 49.5,
     'Sep-24': 50.0,
     'Oct-24': 50.5,
     'Nov-24': 51.0,
@@ -38,9 +38,22 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
     'Feb-25': 52.5,
     'Mar-25': 50.5,
     'Abr-25': 51.0,
-    'May-25': 51.5,
-    'Jun-25': 52.0,
-    'Jul-25': 52.5,
+    'May-25': 50.6,
+    'Jun-25': 50.0,
+    'Jul-25': 51.0,
+  };
+  final Map<String, double> forecastDataReview = {
+    'Sep-24': 50.3,
+    'Oct-24': 50.8,
+    'Nov-24': 50.7,
+    'Dic-24': 52.2,
+    'Ene-25': 48.0,
+    'Feb-25': 52.5,
+    'Mar-25': 50.5,
+    'Abr-25': 51.0,
+    'May-25': 50.6,
+    'Jun-25': 50.0,
+    'Jul-25': 51.2,
   };
   late double touchedValue;
   bool fitInsideBottomTitle = true;
@@ -50,12 +63,10 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
   Widget build(BuildContext context) {
     final historicalData =
         priceData.entries.where((entry) => !entry.key.endsWith('-25')).toList();
-    final forecastData =
-        priceData.entries.where((entry) => entry.key.endsWith('-25')).toList();
-    final rellenoData = priceData.entries
-        .where((entry) =>
-            entry.key.startsWith('Dic-24') || entry.key.startsWith('Ene-25'))
-        .toList();
+
+    final forecastData = forecastDataReview.entries;
+    print(forecastData);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -63,17 +74,6 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
         const SizedBox(
           height: 10.0,
         ),
-        // const Align(
-        //   alignment: Alignment.center,
-        //   child: Text(
-        //     'Por mes',
-        //     style: TextStyle(
-        //       color: Color(0xFF5E4EF3),
-        //       // color: Colors.cyan,
-        //       fontWeight: FontWeight.bold,
-        //     ),
-        //   ),
-        // ),
         SizedBox(
           width: 200.0,
           height: 20.0,
@@ -131,46 +131,6 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
                 lineBarsData: [
                   LineChartBarData(
                     dotData: FlDotData(
-                      getDotPainter: (spot, percent, barData, index) {
-                        return FlDotCirclePainter(
-                          radius: 3.0, // Ajusta el radio para cambiar el tamaño
-                          color:
-                              Theme.of(context).primaryColor, // Color del punto
-                          strokeWidth: 0, // Borde opcional
-                          strokeColor: Colors.transparent,
-                        );
-                      },
-                    ),
-                    color: Theme.of(context).primaryColor,
-                    spots: historicalData
-                        .map((entry) => FlSpot(
-                              priceData.keys
-                                  .toList()
-                                  .indexOf(entry.key)
-                                  .toDouble(),
-                              entry.value,
-                            ))
-                        .toList(),
-                    isCurved: false,
-                    barWidth: 1,
-                    isStrokeCapRound: true,
-                    // dashArray: [5, 5],
-                    // colors: [Colors.blue],
-                    belowBarData: BarAreaData(
-                      show: true,
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Theme.of(context).primaryColor.withOpacity(0.7),
-                          Colors.white.withOpacity(0.2)
-                        ],
-                      ),
-                      // color: Theme.of(context).primaryColor.withOpacity(0.20),
-                    ),
-                  ),
-                  LineChartBarData(
-                    dotData: FlDotData(
                       show: true,
                       getDotPainter: (spot, percent, barData, index) {
                         return FlDotCirclePainter(
@@ -205,6 +165,47 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
                         colors: [
                           // Colors.grey.withOpacity(0.7),
                           const Color(0xFFFFBF00).withOpacity(0.7),
+                          Colors.white.withOpacity(0.2)
+                        ],
+                      ),
+                      // color: Theme.of(context).primaryColor.withOpacity(0.20),
+                    ),
+                  ),
+                  LineChartBarData(
+                    dotData: FlDotData(
+                      getDotPainter: (spot, percent, barData, index) {
+                        return FlDotCirclePainter(
+                          radius: 3.0, // Ajusta el radio para cambiar el tamaño
+                          color:
+                              Theme.of(context).primaryColor, // Color del punto
+                          strokeWidth: 0, // Borde opcional
+                          strokeColor: Colors.transparent,
+                        );
+                      },
+                    ),
+                    color: Theme.of(context).primaryColor,
+                    spots: historicalData
+                        .map((entry) => FlSpot(
+                              priceData.keys
+                                  .toList()
+                                  .indexOf(entry.key)
+                                  .toDouble(),
+                              entry.value,
+                            ))
+                        .toList(),
+                    isCurved: false,
+                    barWidth: 1,
+                    isStrokeCapRound: true,
+
+                    // dashArray: [5, 5],
+                    // colors: [Colors.blue],
+                    belowBarData: BarAreaData(
+                      show: true,
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Theme.of(context).primaryColor.withOpacity(0.7),
                           Colors.white.withOpacity(0.2)
                         ],
                       ),
@@ -256,8 +257,17 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
                       return touchedBarSpots.map((barSpot) {
                         final flSpot = barSpot;
                         return LineTooltipItem(
-                            'Total ', const TextStyle(color: Colors.white),
-                            children: [TextSpan(text: flSpot.y.toString())]);
+                            'Valor total: ',
+                            TextStyle(
+                                color: barSpot.bar.color,
+                                fontWeight: FontWeight.bold),
+                            children: [
+                              TextSpan(
+                                  text: flSpot.y.toString(),
+                                  style: TextStyle(
+                                      color: barSpot.bar.color,
+                                      fontWeight: FontWeight.bold))
+                            ]);
                       }).toList();
                     },
                   ),
