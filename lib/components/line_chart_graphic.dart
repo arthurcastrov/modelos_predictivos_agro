@@ -193,7 +193,7 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
                               entry.value,
                             ))
                         .toList(),
-                    isCurved: false,
+                    isCurved: true,
                     barWidth: 1,
                     isStrokeCapRound: true,
 
