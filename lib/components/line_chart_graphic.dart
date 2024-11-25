@@ -1,11 +1,14 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:modelos_predictivos_agro/components/datos_prueba.dart';
 
 class LineChartGraphic extends StatefulWidget {
+  final String filtroTipoArroz;
   const LineChartGraphic({
     super.key,
     Color? tooltipTextColor,
+    required this.filtroTipoArroz,
     // Color? indicatorTouchedLineColor,
     // Color? indicatorTouchedSpotStrokeColor,
   }) : tooltipTextColor = tooltipTextColor ?? Colors.white;
@@ -21,51 +24,19 @@ class LineChartGraphic extends StatefulWidget {
 }
 
 class _LineChartGraphicState extends State<LineChartGraphic> {
-  final Map<String, double> priceData = {
-    'Ene-24': 45.0, // Históricos
-    'Feb-24': 46.2,
-    'Mar-24': 47.5,
-    'Abr-24': 48.0,
-    'May-24': 47.8,
-    'Jun-24': 48.3,
-    'Jul-24': 49.0,
-    'Ago-24': 49.5,
-    'Sep-24': 50.0,
-    'Oct-24': 50.5,
-    'Nov-24': 51.0,
-    'Dic-24': 51.5,
-    'Ene-25': 48.0,
-    'Feb-25': 52.5,
-    'Mar-25': 50.5,
-    'Abr-25': 51.0,
-    'May-25': 50.6,
-    'Jun-25': 50.0,
-    'Jul-25': 51.0,
-  };
-  final Map<String, double> forecastDataReview = {
-    'Sep-24': 50.3,
-    'Oct-24': 50.8,
-    'Nov-24': 50.7,
-    'Dic-24': 52.2,
-    'Ene-25': 49.8,
-    'Feb-25': 52.5,
-    'Mar-25': 50.5,
-    'Abr-25': 51.0,
-    'May-25': 50.6,
-    'Jun-25': 50.0,
-    'Jul-25': 51.2,
-  };
   late double touchedValue;
   bool fitInsideBottomTitle = true;
   bool fitInsideLeftTitle = false;
 
   @override
   Widget build(BuildContext context) {
-    final historicalData =
-        priceData.entries.where((entry) => !entry.key.endsWith('-25')).toList();
-
-    final forecastData = forecastDataReview.entries;
-    print(forecastData);
+    final Map<String, double> forecastData =
+        preciosTipoArroz[widget.filtroTipoArroz]!['forecast']!;
+    final Map<String, double> historicalData = Map.fromEntries(
+        preciosTipoArroz[widget.filtroTipoArroz]!['historical']!
+            .entries
+            .where((entry) => !entry.key.endsWith('-25'))
+            .toList());
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -128,6 +99,7 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
             ),
             child: LineChart(
               LineChartData(
+                // Dibujar línea de pronostico, se dibuja debajo por eso esta de preimeras
                 lineBarsData: [
                   LineChartBarData(
                     dotData: FlDotData(
@@ -144,9 +116,9 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
                     ),
                     // color: Colors.grey,
                     color: const Color(0xFFFFBF00),
-                    spots: forecastData
+                    spots: forecastData.entries
                         .map((entry) => FlSpot(
-                              priceData.keys
+                              forecastData.keys
                                   .toList()
                                   .indexOf(entry.key)
                                   .toDouble(),
@@ -184,9 +156,9 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
                       },
                     ),
                     color: Theme.of(context).primaryColor,
-                    spots: historicalData
+                    spots: historicalData.entries
                         .map((entry) => FlSpot(
-                              priceData.keys
+                              historicalData.keys
                                   .toList()
                                   .indexOf(entry.key)
                                   .toDouble(),
@@ -227,9 +199,13 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
                       showTitles: true,
                       getTitlesWidget: (value, meta) {
                         final index = value.toInt();
-                        if (index >= 0 && index < priceData.keys.length) {
+                        if (index >= 0 &&
+                            index <
+                                // dataTipoArrozFiltrada['ArrozGranoCorto']!
+                                forecastData.length) {
                           return Text(
-                            priceData.keys.toList()[index],
+                            // dataTipoArrozFiltrada['ArrozGranoCorto']!
+                            forecastData.keys.toList()[index],
                             style: const TextStyle(
                                 fontSize: 10.0, color: Colors.grey),
                           );

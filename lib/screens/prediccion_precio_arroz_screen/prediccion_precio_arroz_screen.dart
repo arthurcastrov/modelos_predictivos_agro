@@ -12,7 +12,7 @@ class EmbededPrediccionPrecioArroz extends StatefulWidget {
 
 class _EmbededPrediccionPrecioArrozState
     extends State<EmbededPrediccionPrecioArroz> {
-  int _selectedValue = 1;
+  String _selectedValue = 'ArrozGranoCorto';
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -59,7 +59,7 @@ class _EmbededPrediccionPrecioArrozState
                                   )
                                 ],
                               ),
-                              value: 1,
+                              value: 'ArrozGranoCorto',
                               groupValue: _selectedValue,
                               onChanged: (value) {
                                 setState(() {
@@ -73,16 +73,21 @@ class _EmbededPrediccionPrecioArrozState
                             subtitle: const Wrap(
                               crossAxisAlignment: WrapCrossAlignment.center,
                               children: [
-                                Text('Requiere suscripción premium '),
+                                Text('Incluido en tu suscripción '),
                                 Icon(
-                                  FontAwesomeIcons.crown,
+                                  FontAwesomeIcons.check,
                                   size: 10.0,
                                 )
                               ],
                             ),
-                            value: 2,
+                            value: 'ArrozGranoMedio',
                             groupValue: _selectedValue,
-                            onChanged: null,
+                            onChanged: (value) {
+                              setState(() {
+                                _selectedValue = value!;
+                              });
+                              print(_selectedValue);
+                            },
                           ),
                           RadioListTile(
                             visualDensity: VisualDensity.compact,
@@ -147,7 +152,9 @@ class _EmbededPrediccionPrecioArrozState
                     SizedBox(
                         height: 380.0,
                         width: MediaQuery.sizeOf(context).width * 0.45,
-                        child: const LineChartGraphic()),
+                        child: LineChartGraphic(
+                          filtroTipoArroz: _selectedValue,
+                        )),
                     const SizedBox(
                       height: 10.0,
                     ),
