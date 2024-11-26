@@ -122,7 +122,7 @@ class _LandingScreenState extends State<LandingScreen> {
               ListTile(
                 title: const Text('PREDICCIÓN DE ENFERMEDADES EN PALMAS'),
                 leading: const Icon(
-                  FontAwesomeIcons.spider,
+                  FontAwesomeIcons.bacteria,
                   size: 15.0,
                 ),
                 onTap: () {
@@ -139,6 +139,17 @@ class _LandingScreenState extends State<LandingScreen> {
                 onTap: () {
                   _changePage(2);
                   Navigator.of(context).pop(); // Cierra el Drawer
+                },
+              ),
+              ListTile(
+                title: const Text('REGISTROS EN CAMPO'),
+                leading: const Icon(
+                  FontAwesomeIcons.clipboardList,
+                  size: 15.0,
+                ),
+                onTap: () {
+                  // _changePage(3);
+                  // Navigator.of(context).pop(); // Cierra el Drawer
                 },
               )
             ],

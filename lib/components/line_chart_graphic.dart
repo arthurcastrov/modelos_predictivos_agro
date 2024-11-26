@@ -109,8 +109,8 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
                           radius: 3.0, // Ajusta el radio para cambiar el tamaño
                           // color: Colors.grey, // Color del punto
                           color: const Color(0xFFFFBF00),
-                          strokeWidth: 0, // Borde opcional
-                          strokeColor: Colors.transparent,
+                          strokeWidth: 1.5, // Borde opcional
+                          strokeColor: Colors.white,
                         );
                       },
                     ),
@@ -150,8 +150,8 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
                           radius: 3.0, // Ajusta el radio para cambiar el tamaño
                           color:
                               Theme.of(context).primaryColor, // Color del punto
-                          strokeWidth: 0, // Borde opcional
-                          strokeColor: Colors.transparent,
+                          strokeWidth: 1.5, // Borde opcional
+                          strokeColor: Colors.white,
                         );
                       },
                     ),
@@ -166,7 +166,7 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
                             ))
                         .toList(),
                     isCurved: true,
-                    barWidth: 1,
+                    barWidth: 2,
                     isStrokeCapRound: true,
 
                     // dashArray: [5, 5],
@@ -185,6 +185,7 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
                     ),
                   ),
                 ],
+
                 titlesData: FlTitlesData(
                   show: true,
                   rightTitles: const AxisTitles(
@@ -227,6 +228,24 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
                   ),
                 ),
                 lineTouchData: LineTouchData(
+                  getTouchedSpotIndicator:
+                      (LineChartBarData barData, List<int> spotIndexes) {
+                    return spotIndexes.map((index) {
+                      return TouchedSpotIndicatorData(
+                        FlLine(color: barData.color),
+                        FlDotData(
+                          show: true,
+                          getDotPainter: (spot, percent, barData, index) =>
+                              FlDotCirclePainter(
+                            radius: 6,
+                            color: barData.color!,
+                            strokeWidth: 2,
+                            strokeColor: Colors.white,
+                          ),
+                        ),
+                      );
+                    }).toList();
+                  },
                   touchTooltipData: LineTouchTooltipData(
                     getTooltipColor: (touchedSpot) => Colors.black,
                     getTooltipItems: (List<LineBarSpot> touchedBarSpots) {

@@ -37,7 +37,7 @@ class _EmbededHomeScreenState extends State<EmbededHomeScreen> {
             padding: const EdgeInsets.all(8.0),
             child: SizedBox(
               width: MediaQuery.sizeOf(context).width * 0.65,
-              height: MediaQuery.sizeOf(context).height * 0.33,
+              height: MediaQuery.sizeOf(context).height * 0.35,
               child: Center(
                 child: ListView(
                   shrinkWrap: true,
@@ -48,7 +48,7 @@ class _EmbededHomeScreenState extends State<EmbededHomeScreen> {
                         child: _cardContainer(
                             'PREDICCIÓN DE ENFERMEDADES EN PALMAS',
                             'Módelo de inteligencia artifical para predecir enferemedades de palma',
-                            FontAwesomeIcons.spider,
+                            FontAwesomeIcons.bacteria,
                             1)),
                     Card(
                         elevation: 2.0,
@@ -57,35 +57,18 @@ class _EmbededHomeScreenState extends State<EmbededHomeScreen> {
                             'Módelo de inteligencia artifical que predice el precio de diferentes tipos de arroz',
                             FontAwesomeIcons.chartLine,
                             2)),
+                    Card(
+                        elevation: 2.0,
+                        child: _cardContainer(
+                            'REGISTROS EN CAMPO',
+                            'Realiza registros en campo de cualquier actividad para centralizar la información y evitar el uso de planillas',
+                            FontAwesomeIcons.clipboardList,
+                            0)),
                   ],
                 ),
               ),
             ),
           ),
-          // ElevatedButton(
-          //   onPressed: _pickFiles,
-          //   child: const Text('Seleccionar Imágenes'),
-          // ),
-          // const SizedBox(height: 20),
-          // _selectedFiles != null
-          //     ? Wrap(
-          //         spacing: 8,
-          //         children: _selectedFiles!.map((file) {
-          //           return Column(
-          //             children: [
-          //               Image.memory(file.bytes!, width: 100, height: 100),
-          //               Text(file.name),
-          //             ],
-          //           );
-          //         }).toList(),
-          //       )
-          //     : const Text('No se han seleccionado imágenes.'),
-          // const SizedBox(height: 20),
-          // ElevatedButton(
-          //   onPressed: () {},
-          //   // _uploadFiles,
-          //   child: const Text('Subir Imágenes'),
-          // ),
         ],
       ),
     );
@@ -100,60 +83,62 @@ class _EmbededHomeScreenState extends State<EmbededHomeScreen> {
       decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(10.0))),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CircleAvatar(
-            radius: 20.0,
-            backgroundColor: const Color(0xFFE5F4FF),
-            child: Icon(
-              iconCard,
-              color: Colors.blue,
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CircleAvatar(
+              radius: 20.0,
+              backgroundColor: const Color(0xFFE5F4FF),
+              child: Icon(
+                iconCard,
+                color: Colors.blue,
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 15.0,
-          ),
-          Text(
-            textCard,
-            style: const TextStyle(
-              fontSize: 12.0,
-              fontWeight: FontWeight.bold,
+            const SizedBox(
+              height: 15.0,
             ),
-          ),
-          const SizedBox(
-            height: 15.0,
-          ),
-          Text(
-            descriptionCard,
-            style: const TextStyle(
-                fontSize: 11.0,
-                fontWeight: FontWeight.normal,
-                color: Colors.grey),
-          ),
-          const SizedBox(
-            height: 20.0,
-          ),
-          Align(
-            alignment: Alignment.center,
-            child: FilledButton(
-              style: const ButtonStyle(
-                minimumSize: WidgetStatePropertyAll(
-                  Size(100.0, 30.0),
+            Text(
+              textCard,
+              style: const TextStyle(
+                fontSize: 12.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(
+              height: 15.0,
+            ),
+            Text(
+              descriptionCard,
+              style: const TextStyle(
+                  fontSize: 11.0,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.grey),
+            ),
+            const SizedBox(
+              height: 20.0,
+            ),
+            Align(
+              alignment: Alignment.center,
+              child: FilledButton(
+                style: const ButtonStyle(
+                  minimumSize: WidgetStatePropertyAll(
+                    Size(100.0, 30.0),
+                  ),
+                ),
+                onPressed: () {
+                  print('Index desde Home_Screen: $pageIndex');
+                  widget.onPageChange(pageIndex);
+                },
+                child: const Text(
+                  'Entrar',
+                  style: TextStyle(fontSize: 12.0),
                 ),
               ),
-              onPressed: () {
-                print('Index desde Home_Screen: $pageIndex');
-                widget.onPageChange(pageIndex);
-              },
-              child: const Text(
-                'Entrar',
-                style: TextStyle(fontSize: 12.0),
-              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
