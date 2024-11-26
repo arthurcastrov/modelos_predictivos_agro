@@ -126,7 +126,7 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
                             ))
                         .toList(),
                     isCurved: true,
-                    barWidth: 2,
+                    barWidth: 1,
                     dashArray: [6, 3],
                     // colors: [Colors.blue],
                     belowBarData: BarAreaData(
@@ -166,9 +166,8 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
                             ))
                         .toList(),
                     isCurved: true,
-                    barWidth: 2,
+                    barWidth: 1,
                     isStrokeCapRound: true,
-
                     // dashArray: [5, 5],
                     // colors: [Colors.blue],
                     belowBarData: BarAreaData(
