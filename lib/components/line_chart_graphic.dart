@@ -1,7 +1,7 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:modelos_predictivos_agro/components/datos_prueba.dart';
+import 'package:modelos_predictivos_agro/components/precios_arroz.dart';
 
 class LineChartGraphic extends StatefulWidget {
   final String filtroTipoArroz;
