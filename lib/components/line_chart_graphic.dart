@@ -89,7 +89,7 @@ class _LineChartGraphicState extends State<LineChartGraphic> {
           height: 10.0,
         ),
         AspectRatio(
-          aspectRatio: 2.2,
+          aspectRatio: 2.4,
           child: Padding(
             padding: const EdgeInsets.only(
               right: 5.0,

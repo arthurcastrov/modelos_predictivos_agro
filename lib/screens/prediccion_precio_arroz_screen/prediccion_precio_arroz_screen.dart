@@ -150,30 +150,35 @@ class _EmbededPrediccionPrecioArrozState
                     //   width: 20.0,
                     // ),
                     SizedBox(
-                        height: 380.0,
+                        // height: 380.0,
+                        height: MediaQuery.sizeOf(context).height * 0.50,
                         width: MediaQuery.sizeOf(context).width * 0.45,
                         child: LineChartGraphic(
                           filtroTipoArroz: _selectedValue,
                         )),
-                    const SizedBox(
-                      height: 10.0,
-                    ),
+                    // const SizedBox(
+                    //   height: 100.0,
+                    // ),
                   ]),
               Container(
-                  height: 120.0,
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(10.0),
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20.0),
-                    ),
+                height: 125.0,
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(
+                  vertical: 15.0,
+                  horizontal: 30.0,
+                ),
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20.0),
                   ),
+                ),
+                child: const SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         'Resultados',
                         style: TextStyle(
                           fontFamily: 'Inter',
@@ -181,25 +186,26 @@ class _EmbededPrediccionPrecioArrozState
                           fontSize: 14.0,
                         ),
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: 10.0,
                       ),
                       SizedBox(
-                        width: MediaQuery.sizeOf(context).width * 0.65,
+                        // width: MediaQuery.sizeOf(context).width * 0.65,
+                        width: double.infinity,
                         height: 65.0,
-                        child: const SingleChildScrollView(
-                          child: Text(
-                            'El modelo logró un porcentaje de exactitud del 92%, lo que indica una alta correspondencia entre los valores reales y los valores predichos. El error medio absoluto (MAE) del modelo es de 1.5 pesos, lo que refleja la desviación promedio entre los precios reales y los predichos en la misma escala monetaria. Además, el error cuadrático medio (RMSE) se estimó en 0.5 pesos, lo que muestra la magnitud del error considerando las desviaciones más significativas. El coeficiente de determinación (R²) fue de 0.89, lo que sugiere que el modelo explica un 89% de la variabilidad en los precios observados.',
-                            style: TextStyle(
-                              fontSize: 11.0,
-                              color: Color(0xFF808080),
-                            ),
-                            textAlign: TextAlign.justify,
+                        child: Text(
+                          'El modelo logró un porcentaje de exactitud del 92%, lo que indica una alta correspondencia entre los valores reales y los valores predichos. El error medio absoluto (MAE) del modelo es de 1.5 pesos, lo que refleja la desviación promedio entre los precios reales y los predichos en la misma escala monetaria. Además, el error cuadrático medio (RMSE) se estimó en 0.5 pesos, lo que muestra la magnitud del error considerando las desviaciones más significativas. El coeficiente de determinación (R²) fue de 0.89, lo que sugiere que el modelo explica un 89% de la variabilidad en los precios observados.',
+                          style: TextStyle(
+                            fontSize: 11.0,
+                            color: Color(0xFF808080),
                           ),
+                          textAlign: TextAlign.justify,
                         ),
                       )
                     ],
-                  )),
+                  ),
+                ),
+              ),
             ],
           ),
         ),

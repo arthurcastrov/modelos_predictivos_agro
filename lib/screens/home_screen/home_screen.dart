@@ -14,62 +14,67 @@ class _EmbededHomeScreenState extends State<EmbededHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            width: MediaQuery.sizeOf(context).width * 0.65,
-            height: MediaQuery.sizeOf(context).height * 0.10,
-          ),
-          const Text(
-            'Hola',
-            style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
-          ),
-          const Text(
-            'A continuación, encontrarás las opciones disponbiles de acuerdo a tu suscripción. Puedes acceder a estas mismas opciones desde el menú lateral izquierdo',
-            style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.normal),
-          ),
-          const SizedBox(
-            height: 50.0,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SizedBox(
-              width: MediaQuery.sizeOf(context).width * 0.65,
-              height: MediaQuery.sizeOf(context).height * 0.35,
-              child: Center(
-                child: ListView(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    Card(
-                        elevation: 2.0,
-                        child: _cardContainer(
-                            'PREDICCIÓN DE ENFERMEDADES EN PALMAS',
-                            'Módelo de inteligencia artifical para predecir enferemedades de palma',
-                            FontAwesomeIcons.bacteria,
-                            1)),
-                    Card(
-                        elevation: 2.0,
-                        child: _cardContainer(
-                            'PREDICCIÓN DEL PRECIO DEL ARROZ',
-                            'Módelo de inteligencia artifical que predice el precio de diferentes tipos de arroz',
-                            FontAwesomeIcons.chartLine,
-                            2)),
-                    Card(
-                        elevation: 2.0,
-                        child: _cardContainer(
-                            'REGISTROS EN CAMPO',
-                            'Realiza registros en campo de cualquier actividad para centralizar la información y evitar el uso de planillas',
-                            FontAwesomeIcons.clipboardList,
-                            0)),
-                  ],
+      child: SizedBox(
+        width: MediaQuery.sizeOf(context).width * 0.65,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Hola',
+                style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                'A continuación, encontrarás las opciones disponbiles de acuerdo a tu suscripción. Puedes acceder a estas mismas opciones desde el menú lateral izquierdo',
+                style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.normal),
+              ),
+              const SizedBox(
+                height: 50.0,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  // width: MediaQuery.sizeOf(context).width * 0.65,
+                  // height: MediaQuery.sizeOf(context).height * 0.30,
+                  height: 250.0,
+                  child: Center(
+                    child: ListView(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        Card(
+                            elevation: 2.0,
+                            child: _cardContainer(
+                                'PREDICCIÓN DE ENFERMEDADES EN PALMAS',
+                                'Módelo de inteligencia artifical para predecir enferemedades de palma',
+                                FontAwesomeIcons.bacteria,
+                                1)),
+                        Card(
+                            elevation: 2.0,
+                            child: _cardContainer(
+                                'PREDICCIÓN DEL PRECIO DEL ARROZ',
+                                'Módelo de inteligencia artifical que predice el precio de diferentes tipos de arroz',
+                                FontAwesomeIcons.chartLine,
+                                2)),
+                        Card(
+                            elevation: 2.0,
+                            child: _cardContainer(
+                                'REGISTROS EN CAMPO',
+                                'Realiza registros en campo de cualquier actividad para centralizar la información y evitar el uso de planillas',
+                                FontAwesomeIcons.clipboardList,
+                                0)),
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ),
+              SizedBox(
+                height: MediaQuery.sizeOf(context).height * 0.30,
+              )
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
@@ -128,7 +133,6 @@ class _EmbededHomeScreenState extends State<EmbededHomeScreen> {
                   ),
                 ),
                 onPressed: () {
-                  print('Index desde Home_Screen: $pageIndex');
                   widget.onPageChange(pageIndex);
                 },
                 child: const Text(
