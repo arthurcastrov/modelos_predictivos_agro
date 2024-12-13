@@ -16,13 +16,17 @@ class _EmbededPrediccionPrecioArrozState
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: SizedBox(
+      child: Container(
+        alignment: Alignment.topCenter,
         width: MediaQuery.sizeOf(context).width * 0.65,
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(
+                height: MediaQuery.sizeOf(context).height * 0.10,
+              ),
               const Text(
                 'Predicción precio del arroz',
                 style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
