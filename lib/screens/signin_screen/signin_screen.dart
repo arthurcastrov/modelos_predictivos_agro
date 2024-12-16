@@ -48,8 +48,10 @@ class _SigninScreenState extends State<SigninScreen> {
             color: Colors.white,
           ),
           padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
-          width: MediaQuery.sizeOf(context).width * 0.30,
-          height: MediaQuery.sizeOf(context).height * 0.30,
+          // width: MediaQuery.sizeOf(context).width * 0.30,
+          width: 500.0,
+          height: 220.0,
+          // height: MediaQuery.sizeOf(context).height * 0.25,
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -74,9 +76,7 @@ class _SigninScreenState extends State<SigninScreen> {
                     fontWeight: FontWeight.normal,
                   ),
                 ),
-                SizedBox(
-                  height: MediaQuery.sizeOf(context).height * 0.05,
-                ),
+                const SizedBox(height: 30.0),
                 FilledButton.icon(
                   style: const ButtonStyle(
                     backgroundColor: WidgetStatePropertyAll(
