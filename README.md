@@ -53,4 +53,4 @@ firebase deploy --only hosting
 ``` 
 firebase hosting:disable
 ``` 
-
+ajustar readme
