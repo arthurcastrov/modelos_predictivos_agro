@@ -27,5 +27,3 @@ jobs:
 
       - name: 🚀 Desplegar en Firebase Hosting
         run: firebase deploy --only hosting --token "${{ secrets.FIREBASE_TOKEN }}"
-        env:
-          FIREBASE_CLI_EXPERIMENTS: webframeworks
